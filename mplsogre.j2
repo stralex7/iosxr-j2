@@ -1,0 +1,38 @@
+#Config for {{ item.hostname }}
+hostname {{ item.hostname|upper }}
+!
+{% for compute in item.computes %}
+interface tunnel-ip{{ compute.number }}
+ description Tunnel to {{ compute.name }}
+ ipv4 unnumbered {{ item.loint }}
+ tunnel mode gre ipv4
+ tunnel source {{ item.loip }}
+ tunnel destination {{ compute.ip }}
+!
+{% endfor %}
+route-policy fake-nh
+{% for compute in item.computes %}
+  if next-hop in ({{ compute.ip }}) then
+    set next-hop {{ compute.fake_ip }}
+  endif
+{% endfor %}
+end-policy
+!
+router static
+ address-family ipv4 unicast
+{% for compute in item.computes %}
+   {{ compute.fake_ip }}/32 tunnel-ip{{ compute.number }}
+{% endfor %}
+!
+mpls static
+{% for compute in item.computes %}
+ interface tunnel-ip{{ compute.number }}
+{% endfor %}
+ address-family ipv4 unicast
+{% for compute in item.computes %}
+{% set label = 200000 + compute.number %}
+  local-label {{ label }} allocate per-prefix {{ compute.fake_ip }}
+   forward
+    path 1 nexthop tunnel-ip{{ compute.number }} out-label pop
+   !
+{% endfor %}

@@ -3,26 +3,18 @@ dcgws:
     profile: mplsogre
     loint: Loopback0
     loip: 10.87.160.18
-    computes:
-      - number: 501
-        name: compute1
-        ip: 10.30.10.1
-        fake_ip: 169.254.10.1
-      - number: 601
-        name: compute2
-        ip: 10.30.20.1
-        fake_ip: 169.254.20.1
 
   - hostname: dcgw2
     profile: mplsogre
     loint: Loopback0
     loip: 10.87.160.19
-    computes:
-      - number: 501
-        name: compute1
-        ip: 10.30.10.1
-        fake_ip: 169.254.10.1
-      - number: 601
-        name: compute2
-        ip: 10.30.20.1
-        fake_ip: 169.254.20.1
+
+computes:
+  - number: 501
+    name: compute1
+    ip: 10.30.10.1
+    fake_ip: 169.254.10.1
+  - number: 601
+    name: compute2
+    ip: 10.30.20.1
+    fake_ip: 169.254.20.1

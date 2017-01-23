@@ -2,9 +2,10 @@
 Jinja2 template for Ansible
 
 Directory structure:
+/etc/ansible
 ├── group_vars
 │   └── all
-├── hosts
+├── hosts: localhost ansible_connection=local
 └── roles
     ├── gre
     │   ├── tasks
@@ -20,4 +21,5 @@ Directory structure:
         │   └── default.j2
         └── vars
             └── main.yml
+
 

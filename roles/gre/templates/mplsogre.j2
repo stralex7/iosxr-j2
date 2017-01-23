@@ -1,7 +1,7 @@
 #Config for {{ item.hostname }}
 hostname {{ item.hostname|upper }}
 !
-{% for compute in item.computes %}
+{% for compute in computes %}
 interface tunnel-ip{{ compute.number }}
  description Tunnel to {{ compute.name }}
  ipv4 unnumbered {{ item.loint }}
@@ -11,7 +11,7 @@ interface tunnel-ip{{ compute.number }}
 !
 {% endfor %}
 route-policy fake-nh
-{% for compute in item.computes %}
+{% for compute in computes %}
   if next-hop in ({{ compute.ip }}) then
     set next-hop {{ compute.fake_ip }}
   endif
@@ -20,16 +20,16 @@ end-policy
 !
 router static
  address-family ipv4 unicast
-{% for compute in item.computes %}
+{% for compute in computes %}
    {{ compute.fake_ip }}/32 tunnel-ip{{ compute.number }}
 {% endfor %}
 !
 mpls static
-{% for compute in item.computes %}
+{% for compute in computes %}
  interface tunnel-ip{{ compute.number }}
 {% endfor %}
  address-family ipv4 unicast
-{% for compute in item.computes %}
+{% for compute in computes %}
 {% set label = 200000 + compute.number %}
   local-label {{ label }} allocate per-prefix {{ compute.fake_ip }}
    forward

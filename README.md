@@ -1,7 +1,7 @@
 # iosxr-j2
 Jinja2 template for Ansible
 
-Directory structure
+Directory structure:
 ├── group_vars
 │   └── all
 ├── hosts

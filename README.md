@@ -3,7 +3,7 @@ Jinja2 template for Ansible
 
 # Quick howto
 1. Install Ansible, I use latest ubuntu. The official installation guide is [here](http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-apt-ubuntu)
-2. Modify /etc/ansible/hosts to include: localhost ansible_connection=local
+2. Modify /etc/ansible/hosts to include: `localhost ansible_connection=local`
 3. Clone this repository
 4. Modify roles/gre/vars/main.yml to match your setup
 5. Execute ansible-playbook playbook.yml

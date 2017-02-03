@@ -1,0 +1,24 @@
+!
+{% for vpn in item.vpns %}
+vrf {{ vpn.name }}
+ address-family ipv4 unicast
+  import route-target {{ item.as_number }}:{{ vpn.iRT }}
+  export route-target {{ item.as_number }}:{{ vpn.eRT }}
+!
+{% endfor %}
+router static
+{% for vpn in item.vpns %}
+vrf {{ vpn.name }}
+ address-family ipv4 unicast
+  0.0.0.0/0 Null0 description Default_route_for_VPN_{{vpn.name}}
+{% endfor %}
+!
+router bgp {{ item.as_number }}
+{% for vpn in item.vpns %}
+vrf {{ vpn.name }}
+  rd {{ item.as_number }}:{{ vpn.RD }}
+  default-information originate
+  address-family ipv4 unicast
+   redistribute connected
+   redistribute static 
+{% endfor %}

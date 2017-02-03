@@ -1,0 +1,13 @@
+---
+vrfs:
+  - profile: default 
+    as_number: 64512
+    vpns:
+      - RD: 10
+        name: blue
+        iRT: 10
+        eRT: 10
+      - RD: 20
+        name: red
+        iRT: 20
+        eRT: 20

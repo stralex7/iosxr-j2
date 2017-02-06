@@ -1,5 +1,5 @@
 ---
-- name: Apply tor role
+- name: Apply roles
   gather_facts: no
   hosts: localhost
 

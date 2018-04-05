@@ -11,4 +11,22 @@ Jinja2 template for Ansible
 
 The template itself is located in `roles/gre/templates`. You can use this for autogenerating configuration files based on your requirements.
 
+## I have missed a several configuration parts, that was obvious a year ago
+Where to apply generated route-policy
+```
+router bgp 65201
+ bgp router-id 10.3.117.162
+ address-family vpnv4 unicast
+ !
+ neighbor 192.168.72.7
+  remote-as 65201
+  update-source Loopback1
+  address-family vpnv4 unicast
+   route-policy fake-nh in
+```
+Route policy to filter out anything but default
+```
+```
+
+
 

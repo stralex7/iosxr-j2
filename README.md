@@ -11,7 +11,7 @@ Jinja2 template for Ansible
 
 The template itself is located in `roles/gre/templates`. You can use this for autogenerating configuration files based on your requirements.
 
-## I have missed a several configuration parts, that was obvious a year ago
+#### I have missed a several configuration parts, that was obvious a year ago, but couldn't recall them today
 Where to apply generated route-policy
 ```
 router bgp 65201
@@ -26,6 +26,7 @@ router bgp 65201
 ```
 Route policy to filter out anything but default
 ```
+tbd route-map default-only
 ```
 
 

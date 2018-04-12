@@ -12,6 +12,8 @@ Jinja2 template for Ansible
 
 The template itself is located in `roles/gre/templates`. You can use this for autogenerating configuration files based on your requirements.
 
+By default produced files are placed in /tmp
+
 #### I have missed a several configuration parts, that was obvious a year ago, but couldn't recall them today
 Where to apply generated route-policy
 ```

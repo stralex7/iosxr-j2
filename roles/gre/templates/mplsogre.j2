@@ -31,7 +31,7 @@ mpls static
  address-family ipv4 unicast
 {% for compute in computes %}
 {% set label = 200000 + compute.number %}
-  local-label {{ label }} allocate per-prefix {{ compute.fake_ip }}
+  local-label {{ label }} allocate per-prefix {{ compute.fake_ip }}/32
    forward
     path 1 nexthop tunnel-ip{{ compute.number }} out-label pop
    !

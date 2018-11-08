@@ -31,6 +31,13 @@ Route policy to filter out anything but default
 ```
 tbd route-map default-only
 ```
+## Creating computes section based on list
+```
+awk 'BEGIN {count=100} {count++;print "computes:\n  - name: "$1"\n    number: "count"\n    ip: "$2"\n    fake_ip: 169.254.33."count}' computes
 
+cat computes
+compute-6-2 10.1.0.96
+...
+```
 
 
